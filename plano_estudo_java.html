@@ -1,0 +1,520 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Plano de Estudo Java — Do Fundamento à Arquitetura</title>
+    <style>
+        :root {
+            --bg-color: #f4f7f6;
+            --card-bg: #ffffff;
+            --text-color: #2c3e50;
+            --primary-color: #2c3e50;
+            --accent-color: #e67e22;
+            --border-color: #dcdde1;
+            --success-color: #2ecc71;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+        }
+
+        header {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 2rem 1rem;
+            text-align: center;
+            border-bottom: 5px solid var(--accent-color);
+        }
+
+        nav {
+            background: #34495e;
+            padding: 0.5rem;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+            padding: 0.5rem 1rem;
+            border-radius: 4px;
+            transition: background 0.3s;
+        }
+
+        nav a:hover {
+            background: var(--accent-color);
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: 2rem auto;
+            padding: 0 1rem;
+        }
+
+        section {
+            background: var(--card-bg);
+            padding: 2rem;
+            margin-bottom: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+        }
+
+        h2 {
+            color: var(--primary-color);
+            border-bottom: 2px solid var(--accent-color);
+            padding-bottom: 0.5rem;
+            margin-top: 0;
+        }
+
+        h3 {
+            color: #34495e;
+            margin-top: 1.5rem;
+        }
+
+        /* Tabelas */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1rem 0 2rem 0;
+        }
+
+        th, td {
+            padding: 0.75rem;
+            text-align: left;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        th {
+            background-color: #eaeded;
+            color: var(--primary-color);
+        }
+
+        tr:hover {
+            background-color: #f9f9f9;
+        }
+
+        a {
+            color: #2980b9;
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        /* Checkboxes e Plano de Estudo */
+        .fase-block {
+            border-left: 4px solid var(--accent-color);
+            padding-left: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        .semana-block {
+            background: #fdfefe;
+            border: 1px solid var(--border-color);
+            padding: 1rem;
+            margin-bottom: 1rem;
+            border-radius: 6px;
+        }
+
+        .task-list {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .task-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 0.5rem;
+            margin-bottom: 0.5rem;
+            padding: 0.3rem;
+            border-radius: 4px;
+            transition: background 0.2s;
+        }
+
+        .task-item:hover {
+            background: #f0f3f4;
+        }
+
+        .task-item input[type="checkbox"] {
+            margin-top: 0.3rem;
+            cursor: pointer;
+            transform: scale(1.2);
+        }
+
+        .task-item.completed label {
+            text-decoration: line-through;
+            color: #7f8c8d;
+        }
+
+        .progresso-container {
+            background: #e8f8f5;
+            border: 1px solid var(--success-color);
+            padding: 1rem;
+            border-radius: 6px;
+            margin-bottom: 2rem;
+            text-align: center;
+            font-size: 1.2rem;
+            font-weight: bold;
+        }
+
+        .bar-bg {
+            background: #e0e0e0;
+            border-radius: 10px;
+            height: 20px;
+            width: 100%;
+            margin-top: 0.5rem;
+            overflow: hidden;
+        }
+
+        .bar-fill {
+            background: var(--success-color);
+            height: 100%;
+            width: 0%;
+            transition: width 0.3s ease;
+        }
+
+        blockquote {
+            background: #fcf3cf;
+            border-left: 5px solid #f1c40f;
+            margin: 1rem 0;
+            padding: 0.5rem 1rem;
+            font-style: italic;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>Java Enterprise — Do Fundamento à Arquitetura</h1>
+        <p>Guia de Tópicos, Recursos Curados e Plano Dinâmico de 24 Semanas</p>
+    </header>
+
+    <nav>
+        <a href="#topicos">1. Tópicos Explicados</a>
+        <a href="#recursos">2. Recursos de Estudo</a>
+        <a href="#plano">3. Plano de Estudo</a>
+    </nav>
+
+    <div class="container">
+
+        <section id="topicos">
+            <h2>1. Tópicos Java — Guia Explicativo</h2>
+            
+            <h3>1. JVM (Java Virtual Machine)</h3>
+            <p>A JVM é a máquina virtual que executa o bytecode Java. Quando você compila um arquivo <code>.java</code>, o compilador (<code>javac</code>) gera arquivos <code>.class</code> contendo bytecode. A JVM interpreta e/ou compila esse bytecode em tempo de execução (JIT — Just-In-Time Compilation) para código nativo da máquina hospedeira.</p>
+            <p><strong>Componentes principais:</strong> ClassLoader (carrega classes), Runtime Data Areas (Heap, Stack, Metaspace), Execution Engine e o Garbage Collector (GC), que gerencia a memória automaticamente (G1, ZGC, etc.).</p>
+
+            <h3>2. Collections Framework</h3>
+            <p>A biblioteca padrão do Java para estruturas de dados e algoritmos. Define interfaces cruciais como <code>List</code> (ArrayList, LinkedList), <code>Set</code> (HashSet, TreeSet), <code>Map</code> (HashMap, ConcurrentHashMap) e <code>Queue</code>.</p>
+            <p>Inclui contratos fundamentais como o relacionamento entre <code>equals()</code> e <code>hashCode()</code> e a poderosa Streams API (Java 8+) para operações funcionais.</p>
+
+            <h3>3. POO (Programação Orientada a Objetos)</h3>
+            <p>O paradigma central do Java sustentado por 4 pilares: <strong>Encapsulamento</strong> (proteger o estado com modificadores de acesso), <strong>Herança</strong> (reutilização e especialização), <strong>Polimorfismo</strong> (sobrecarga estática ou sobrescrita dinâmica) e <strong>Abstração</strong> (classes abstratas e interfaces).</p>
+            <p>Evoluções modernas incluem os Records (Java 16+) para dados imutáveis e Sealed Classes (Java 17+) para controle de hierarquias.</p>
+
+            <h3>4. Spring Core</h3>
+            <p>O alicerce do ecossistema Spring. Ele provê o container de Inversão de Controle (IoC) por meio do <code>ApplicationContext</code> e a Injeção de Dependência (DI). Ele gerencia o ciclo de vida e escopo dos beans (como Singleton e Prototype) e suporta AOP (Programação Orientada a Aspectos) para isolar transações e logs.</p>
+
+            <h3>5. Spring Boot</h3>
+            <p>Camada de opinião focada em produtividade que elimina o boilerplate de configuração. Traz o conceito de <strong>Autoconfiguração</strong>, dependências pré-configuradas (Starters), servidor embutido (Tomcat/Jetty), monitoramento em produção com o Spring Boot Actuator e gerenciamento por Profiles.</p>
+
+            <h3>6. Pirâmide de Testes</h3>
+            <p>Conceito de eficiência para qualidade de software: base larga composta de <strong>Testes Unitários</strong> rápidos (JUnit 5, Mockito), meio composto por <strong>Testes de Integração</strong> (Spring Boot Test, Testcontainers, WireMock) e o topo estreito com testes End-to-End (E2E) completos.</p>
+
+            <h3>7. Spring Cloud</h3>
+            <p>Conjunto de ferramentas para arquitetura de microsserviços e sistemas distribuídos. Inclui soluções para Configuração Centralizada (Config Server), Descoberta de Serviços (Eureka), API Gateway, Circuit Breaker (Resilience4j) e Rastreamento Distribuído (Micrometer + Zipkin).</p>
+
+            <h3>8. Concorrência</h3>
+            <p>Suporte nativo do Java para multiprocessamento através de threads tradicionais, utilitários de alto nível no pacote <code>java.util.concurrent</code> (como <code>ExecutorService</code> e <code>CompletableFuture</code>) e as modernas <strong>Virtual Threads</strong> (Java 21+) projetadas para alta escalabilidade de I/O.</p>
+
+            <h3>9. Performance</h3>
+            <p>Engloba técnicas de otimização voltadas a compiladores JIT, tuning de Garbage Collector, profiling e diagnósticos em tempo real utilizando Java Flight Recorder (JFR) e async-profiler, microbenchmarks com JMH e compilação nativa AOT com GraalVM.</p>
+
+            <h3>10. Clean Code</h3>
+            <p>Práticas de legibilidade e manutenibilidade popularizadas por Robert C. Martin. Enfatiza nomes significativos, funções de responsabilidade única, regras como DRY, KISS, YAGNI e o aprofundamento nos 5 princípios do <strong>SOLID</strong>.</p>
+
+            <h3>11. Arquitetura de Software</h3>
+            <p>Estrutura fundamental que governa a coesão, acoplamento e distribuição de componentes em um ecossistema. Compreende estilos que variam de Monolitos tradicionais a Microsserviços e Arquiteturas orientadas a eventos (Event-Driven), geralmente documentadas através de ADRs.</p>
+
+            <h3>12. Arquitetura Hexagonal (Ports & Adapters)</h3>
+            <p>Abordagem que coloca as regras de negócio (Domínio) no centro, isoladas do mundo externo. A comunicação ocorre por Interfaces chamadas de <strong>Ports</strong> (Inbound/Outbound) que são implementadas ou consumidas por <strong>Adapters</strong> (ex: REST Controllers, Repositórios JPA), garantindo que a tecnologia de infraestrutura mude sem afetar o negócio.</p>
+
+            <h3>13. MVC (Model-View-Controller)</h3>
+            <p>Padrão que divide as responsabilidades de entrada e representação de dados. No Spring MVC, o <code>DispatcherServlet</code> atua como centralizador de requisições, mapeando URIs para Controllers que processam regras e serializam dados em JSON ou Views de interface.</p>
+
+            <h3>14. Clean Architecture</h3>
+            <p>Estrutura em camadas concêntricas onde a regra de dependência dita que o código de fora conhece o de dentro, mas o inverso nunca ocorre. Divide o sistema estritamente em Entities, Use Cases (Casos de uso da aplicação), Interface Adapters e Frameworks externos.</p>
+
+            <h3>15. Monolito Modular</h3>
+            <p>Padrão de design que mantém o deploy unificado e simplificado de um monolito, mas estrutura o código internamente em módulos rígidos e isolados (Bounded Contexts). Ferramentas modernas como o <strong>Spring Modulith</strong> auxiliam a verificar e testar o acoplamento dessas fronteiras.</p>
+
+            <h3>16. Integração com LLMs (LangChain4j)</h3>
+            <p>Inclusão de inteligência artificial generativa em ecossistemas Java corporativos. O framework <strong>LangChain4j</strong> unifica conexões com modelos de IA (OpenAI, Claude, Ollama), gerencia padrões RAG (Busca semântica e Vector Stores) e provê recursos de Function Calling.</p>
+
+            <h3>17. REST API</h3>
+            <p>Estilo arquitetural baseado nos princípios do protocolo HTTP (Verbos, Recursos e Status Codes), sem retenção de estado (Stateless). Emprega práticas de paginação de dados, documentação via OpenAPI/Swagger e segurança via tokens JWT.</p>
+
+            <h3>18. Mensageria</h3>
+            <p>Comunicação assíncrona orientada a eventos ou tópicos para desacoplamento de microsserviços. Destaca o uso do <strong>Apache Kafka</strong> para logs de streaming distribuídos e de alta vazão e o <strong>RabbitMQ</strong> para roteamento de filas complexas via AMQP.</p>
+        </section>
+
+        <section id="recursos">
+            <h2>2. Recursos de Estudo</h2>
+            
+            <h3>JVM & Collections</h3>
+            <table>
+                <thead><tr><th>Tópico</th><th>Tipo</th><th>Recurso</th><th>Onde</th></tr></thead>
+                <tbody>
+                    <tr><td>JVM</td><td>Artigo</td><td><a href="https://www.baeldung.com/jvm-architecture" target="_blank">Understanding the JVM Architecture</a></td><td>Baeldung</td></tr>
+                    <tr><td>JVM</td><td>Curso</td><td><a href="https://www.udemy.com/course/java-memory-management/" target="_blank">Java Memory Management</a></td><td>Udemy</td></tr>
+                    <tr><td>Collections</td><td>Artigo</td><td><a href="https://www.baeldung.com/java-collections" target="_blank">Guide to Java Collections</a></td><td>Baeldung</td></tr>
+                    <tr><td>Collections</td><td>Vídeo</td><td><a href="https://www.youtube.com/watch?v=RTCB6YnVukc" target="_blank">Streams in Java — Fernanda Kipper</a></td><td>YouTube (PT-BR)</td></tr>
+                </tbody>
+            </table>
+
+            <h3>POO & Spring Core / Boot</h3>
+            <table>
+                <thead><tr><th>Tópico</th><th>Tipo</th><th>Recurso</th><th>Onde</th></tr></thead>
+                <tbody>
+                    <tr><td>POO</td><td>Curso</td><td><a href="https://www.udemy.com/course/java-curso-completo/" target="_blank">Java COMPLETO — Nélio Alves</a></td><td>Udemy (PT-BR)</td></tr>
+                    <tr><td>POO</td><td>Vídeo</td><td><a href="https://www.youtube.com/watch?v=mkx0CdWiPRA" target="_blank">SOLID em Java — Giuliana Bezerra</a></td><td>YouTube (PT-BR)</td></tr>
+                    <tr><td>Spring Core</td><td>Vídeo</td><td><a href="https://www.youtube.com/watch?v=H0k5PBiFgBg" target="_blank">Spring IoC Container — Fernanda Kipper</a></td><td>YouTube (PT-BR)</td></tr>
+                    <tr><td>Spring Boot</td><td>Curso</td><td><a href="https://www.alura.com.br/formacao-spring-boot-3" target="_blank">Formação Spring Boot</a></td><td>Alura (PT-BR)</td></tr>
+                </tbody>
+            </table>
+
+            <h3>Qualidade, Arquitetura & IA</h3>
+            <table>
+                <thead><tr><th>Tópico</th><th>Tipo</th><th>Recurso</th><th>Onde</th></tr></thead>
+                <tbody>
+                    <tr><td>Testes</td><td>Artigo</td><td><a href="https://martinfowler.com/articles/practical-test-pyramid.html" target="_blank">The Practical Test Pyramid — Martin Fowler</a></td><td>martinfowler.com</td></tr>
+                    <tr><td>Hexagonal</td><td>Curso</td><td><a href="https://www.udemy.com/course/get-your-hands-dirty-on-clean-architecture/" target="_blank">Get Your Hands Dirty on Clean Architecture</a></td><td>Udemy</td></tr>
+                    <tr><td>Modulith</td><td>Vídeo</td><td><a href="https://www.youtube.com/watch?v=erd38EPlXxE" target="_blank">Spring Modulith — Oliver Drotbohm</a></td><td>YouTube</td></tr>
+                    <tr><td>LLMs / IA</td><td>Vídeo</td><td><a href="https://www.youtube.com/watch?v=Cx-lMpcg9xQ" target="_blank">Java + IA na prática — Giuliana Bezerra</a></td><td>YouTube (PT-BR)</td></tr>
+                </tbody>
+            </table>
+        </section>
+
+        <section id="plano">
+            <h2>3. Plano de Estudo Dinâmico</h2>
+            <p>Marque os passos à medida que os conclui. Seu progresso será salvo automaticamente.</p>
+
+            <div class="progresso-container">
+                Seu Progresso: <span id="progresso-texto">0%</span>
+                <div class="bar-bg"><div class="bar-fill" id="progresso-barra"></div></div>
+            </div>
+
+            <div class="fase-block">
+                <h3>Fase 1 — Fundamentos da Linguagem (~4 semanas)</h3>
+                <blockquote>Objetivo: dominar a base sobre a qual tudo se constrói — o modelo OO do Java, as estruturas de dados nativas e o funcionamento da JVM.</blockquote>
+
+                <div class="semana-block">
+                    <h4>Semana 1-2: POO (Programação Orientada a Objetos)</h4>
+                    <ul class="task-list">
+                        <li class="task-item"><input type="checkbox" id="f1-s1-t1"><label for="f1-s1-t1">Estudar os 4 pilares da POO e introdução ao SOLID</label></li>
+                        <li class="task-item"><input type="checkbox" id="f1-s1-t2"><label for="f1-s1-t2">Estudar Interfaces, Classes Abstratas, Records (Java 16+) e Sealed Classes (Java 17+)</label></li>
+                        <li class="task-item"><input type="checkbox" id="f1-s1-ex"><label for="f1-s1-ex"><strong>Exercício Prático:</strong> Modelar um sistema de biblioteca usando os conceitos aprendidos</label></li>
+                    </ul>
+                </div>
+
+                <div class="semana-block">
+                    <h4>Semana 3: Collections Framework</h4>
+                    <ul class="task-list">
+                        <li class="task-item"><input type="checkbox" id="f1-s3-t1"><label for="f1-s3-t1">Aprender List, Set, Map, Queue e contratos equals/hashCode</label></li>
+                        <li class="task-item"><input type="checkbox" id="f1-s3-t2"><label for="f1-s3-t2">Dominar Streams API e operações funcionais (filter, map, reduce)</label></li>
+                        <li class="task-item"><input type="checkbox" id="f1-s3-ex"><label for="f1-s3-ex"><strong>Exercício Prático:</strong> Resolver 10+ problemas usando loops tradicionais e Streams</label></li>
+                    </ul>
+                </div>
+
+                <div class="semana-block">
+                    <h4>Semana 4: JVM Internals</h4>
+                    <ul class="task-list">
+                        <li class="task-item"><input type="checkbox" id="f1-s4-t1"><label for="f1-s4-t1">Estudar ClassLoader, Heap, Stack e Metaspace</label></li>
+                        <li class="task-item"><input type="checkbox" id="f1-s4-t2"><label for="f1-s4-t2">Entender algoritmos de Garbage Collection (G1, ZGC) e compilação JIT básico</label></li>
+                        <li class="task-item"><input type="checkbox" id="f1-s4-ex"><label for="f1-s4-ex"><strong>Exercício Prático:</strong> Monitorar uma aplicação local com jconsole ou VisualVM</label></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="fase-block">
+                <h3>Fase 2 — Spring Framework (~4 semanas)</h3>
+                <blockquote>Objetivo: dominar o framework mais usado no ecossistema Java enterprise — do container IoC à construção de APIs REST.</blockquote>
+
+                <div class="semana-block">
+                    <h4>Semana 5: Spring Core</h4>
+                    <ul class="task-list">
+                        <li class="task-item"><input type="checkbox" id="f2-s5-t1"><label for="f2-s5-t1">Inversão de Controle (IoC), Injeção de Dependências (DI por construtor)</label></li>
+                        <li class="task-item"><input type="checkbox" id="f2-s5-t2"><label for="f2-s5-t2">Dominar anotações principais e escopo de Beans (Singleton, Prototype)</label></li>
+                        <li class="task-item"><input type="checkbox" id="f2-s5-ex"><label for="f2-s5-ex"><strong>Exercício Prático:</strong> Criar uma aplicação Spring (sem Boot) configurada por anotações</label></li>
+                    </ul>
+                </div>
+
+                <div class="semana-block">
+                    <h4>Semana 6-7: Spring Boot + MVC</h4>
+                    <ul class="task-list">
+                        <li class="task-item"><input type="checkbox" id="f2-s6-t1"><label for="f2-s6-t1">Estudar Autoconfiguração, starters, validação e tratamento global de erros (@ControllerAdvice)</label></li>
+                        <li class="task-item"><input type="checkbox" id="f2-s6-ex"><label for="f2-s6-ex"><strong>Exercício Prático:</strong> Construir uma REST API CRUD completa com validação e profiles dev/prod</label></li>
+                    </ul>
+                </div>
+
+                <div class="semana-block">
+                    <h4>Semana 8: REST API Aprofundado</h4>
+                    <ul class="task-list">
+                        <li class="task-item"><input type="checkbox" id="f2-s8-t1"><label for="f2-s8-t1">Estudar documentação com OpenAPI/Swagger e segurança com Spring Security + JWT</label></li>
+                        <li class="task-item"><input type="checkbox" id="f2-s8-ex"><label for="f2-s8-ex"><strong>Exercício Prático:</strong> Integrar documentação Swagger, autenticação JWT e paginação à API anterior</label></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="fase-block">
+                <h3>Fase 3 — Qualidade e Boas Práticas (~3 semanas)</h3>
+                <blockquote>Objetivo: escrever código limpo, testável e manutenível.</blockquote>
+
+                <div class="semana-block">
+                    <h4>Semana 9-10: Clean Code + Pirâmide de Testes</h4>
+                    <ul class="task-list">
+                        <li class="task-item"><input type="checkbox" id="f3-s9-t1"><label for="f3-s9-t1">Reforçar princípios SOLID, DRY, KISS, YAGNI e testes com JUnit 5 / Mockito</label></li>
+                        <li class="task-item"><input type="checkbox" id="f3-s9-ex"><label for="f3-s9-ex"><strong>Exercício Prático:</strong> Refatorar a API da Fase 2 e adicionar testes de integração com Testcontainers</label></li>
+                    </ul>
+                </div>
+
+                <div class="semana-block">
+                    <h4>Semana 11: Concorrência</h4>
+                    <ul class="task-list">
+                        <li class="task-item"><input type="checkbox" id="f3-s11-t1"><label for="f3-s11-t1">Aprender ExecutorService, CompletableFuture e as novas Virtual Threads (Java 21+)</label></li>
+                        <li class="task-item"><input type="checkbox" id="f3-s11-ex"><label for="f3-s11-ex"><strong>Exercício Prático:</strong> Implementar um produtor-consumidor usando BlockingQueue e atualizar para Virtual Threads</label></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="fase-block">
+                <h3>Fase 4 — Arquitetura de Software (~5 semanas)</h3>
+                <blockquote>Objetivo: aprender a organizar sistemas de forma sustentável, da teoria a padrões concretos em Java.</blockquote>
+
+                <div class="semana-block">
+                    <h4>Semana 12: Fundamentos de Arquitetura</h4>
+                    <ul class="task-list">
+                        <li class="task-item"><input type="checkbox" id="f4-s12-t1"><label for="f4-s12-t1">Estudar acoplamento/coesão e conceitos básicos de DDD (Bounded Contexts, Aggregates)</label></li>
+                    </ul>
+                </div>
+
+                <div class="semana-block">
+                    <h4>Semana 13-14: Arquitetura Hexagonal + Clean Arch</h4>
+                    <ul class="task-list">
+                        <li class="task-item"><input type="checkbox" id="f4-s13-t1"><label for="f4-s13-t1">Dominar Ports & Adapters e a regra de isolamento do domínio</label></li>
+                        <li class="task-item"><input type="checkbox" id="f4-s13-ex"><label for="f4-s13-ex"><strong>Exercício Prático:</strong> Reestruturar a API CRUD adaptando-a à Arquitetura Hexagonal pura</label></li>
+                    </ul>
+                </div>
+
+                <div class="semana-block">
+                    <h4>Semana 15-16: Monolito Modular</h4>
+                    <ul class="task-list">
+                        <li class="task-item"><input type="checkbox" id="f4-s15-t1"><label for="f4-s15-t1">Aprender comunicação por eventos internos usando Spring Modulith</label></li>
+                        <li class="task-item"><input type="checkbox" id="f4-s15-ex"><label for="f4-s15-ex"><strong>Exercício Prático:</strong> Criar uma aplicação com 3 módulos isolados comunicando-se por eventos do Spring</label></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="fase-block">
+                <h3>Fase 5 — Sistemas Distribuídos (~4 semanas)</h3>
+                <blockquote>Objetivo: expandir para sistemas distribuídos com mensageria assíncrona e microsserviços.</blockquote>
+
+                <div class="semana-block">
+                    <h4>Semana 17-18: Mensageria</h4>
+                    <ul class="task-list">
+                        <li class="task-item"><input type="checkbox" id="f5-s17-t1"><label for="f5-s17-t1">Estudar ecossistema Kafka/RabbitMQ, DLQs e concorrência em consumidores</label></li>
+                        <li class="task-item"><input type="checkbox" id="f5-s17-ex"><label for="f5-s17-ex"><strong>Exercício Prático:</strong> Adicionar comunicação via Kafka entre módulos do projeto da Fase 4</label></li>
+                    </ul>
+                </div>
+
+                <div class="semana-block">
+                    <h4>Semana 19-20: Spring Cloud</h4>
+                    <ul class="task-list">
+                        <li class="task-item"><input type="checkbox" id="f5-s19-t1"><label for="f5-s19-t1">Estudar Config Server, Service Discovery (Eureka), API Gateway e Circuit Breaker (Resilience4j)</label></li>
+                        <li class="task-item"><input type="checkbox" id="f5-s19-ex"><label for="f5-s19-ex"><strong>Exercício Prático:</strong> Extrair dois microsserviços do seu monolito acoplando Eureka, Gateway e Docker Compose</label></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="fase-block">
+                <h3>Fase 6 — Tópicos Avançados (~4 semanas)</h3>
+                <blockquote>Objetivo: otimizar aplicações, integrar inteligência artificial generativa e consolidar o aprendizado.</blockquote>
+
+                <div class="semana-block">
+                    <h4>Semana 21-22: Performance</h4>
+                    <ul class="task-list">
+                        <li class="task-item"><input type="checkbox" id="f6-s21-t1"><label for="f6-s21-t1">Estudar Profiling com JFR, benchmarks com JMH e Imagens Nativas com GraalVM</label></li>
+                        <li class="task-item"><input type="checkbox" id="f6-s21-ex"><label for="f6-s21-ex"><strong>Exercício Prático:</strong> Encontrar 3 gargalos na API, corrigi-los e validar o ganho com JMH</label></li>
+                    </ul>
+                </div>
+
+                <div class="semana-block">
+                    <h4>Semana 23-24: Integração com LLMs</h4>
+                    <ul class="task-list">
+                        <li class="task-item"><input type="checkbox" id="f6-s23-t1"><label for="f6-s23-t1">Estudar LangChain4j ou Spring AI, arquitetura de RAG e Vector Stores</label></li>
+                        <li class="task-item"><input type="checkbox" id="f6-s23-ex"><label for="f6-s23-ex"><strong>Exercício Prático / Projeto Final:</strong> Desenvolver o Sistema Integrador de Gestão de Pedidos com Assistente IA integrado</label></li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+    </div>
+
+    <script>
+        // Lógica de Persistência e Cálculo de Progresso
+        const checkboxes = document.querySelectorAll('.task-item input[type="checkbox"]');
+        const progressoTexto = document.getElementById('progresso-texto');
+        const progressoBarra = document.getElementById('progresso-barra');
+
+        function atualizarProgresso() {
+            const total = checkboxes.length;
+            let marcados = 0;
+
+            checkboxes.forEach(cb => {
+                const item = cb.closest('.task-item');
+                if (cb.checked) {
+                    marcados++;
+                    item.classList.add('completed');
+                } else {
+                    item.classList.remove('completed');
+                }
+            });
+
+            const porcentagem = total > 0 ? Math.round((marcados / total) * 100) : 0;
+            progressoTexto.innerText = `${porcentagem}% (${marcados} de ${total} passos)`;
+            progressoBarra.style.width = `${porcentagem}%`;
+        }
+
+        // Salvar estado no LocalStorage
+        checkboxes.forEach(cb => {
+            cb.addEventListener('change', () => {
+                localStorage.setItem(cb.id, cb.checked);
+                atualizarProgresso();
+            });
+        });
+
+        // Carregar estado inicial
+        window.addEventListener('DOMContentLoaded', () => {
+            checkboxes.forEach(cb => {
+                const estadoSalvo = localStorage.getItem(cb.id);
+                if (estadoSalvo === 'true') {
+                    cb.checked = true;
+                }
+            });
+            atualizarProgresso();
+        });
+    </script>
+</body>
+</html>
